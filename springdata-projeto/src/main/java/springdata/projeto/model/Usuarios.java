@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,10 +14,12 @@ import org.hibernate.annotations.GenericGenerator;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 
 @Entity
+@Table(name = "usuario_pessoa", uniqueConstraints = {@UniqueConstraint(columnNames= {"login"})})
+
 public class Usuarios {
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "usuario_sequence")
+	@GeneratedValue (strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String nome;
